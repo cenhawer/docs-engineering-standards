@@ -9,6 +9,7 @@
 | Sección | Descripción | Estado |
 |---------|-------------|--------|
 | [Database](./database/README.md) | SQL Server, modelado relacional, NoSQL, convenciones | `Stable` |
+| [Git](./git/README.md) | Conventional commits, GitFlow, nomenclatura de ramas, configuración de repos | `Stable` |
 | Backend | C#, .NET Core, diseño de APIs, manejo de errores | `Próximamente` |
 | Frontend | Angular, estructura de proyectos, gestión de estado | `Próximamente` |
 | DevOps | CI/CD, Docker, pipelines, infraestructura | `Próximamente` |
@@ -21,6 +22,7 @@
 | Sección | Estado | Cobertura |
 |---------|--------|-----------|
 | Database | `Stable` | Naming conventions, DDL templates, database setup |
+| Git | `Stable` | Conventional commits, GitFlow por tipo de repo, branch naming, setup de repos |
 | Backend | `Draft` | Pendiente definición inicial |
 | Frontend | `Draft` | Pendiente definición inicial |
 | DevOps | `Draft` | Pendiente definición inicial |
@@ -34,6 +36,11 @@
 - [x] Convenciones de nomenclatura — SQL Server
 - [x] Templates DDL — SQL Server
 - [x] Configuración de base de datos — SQL Server
+
+### Git
+- [x] Convenciones de Git (Conventional Commits, GitFlow, nomenclatura de ramas)
+- [x] Templates y Ejemplos (commits, PRs, flujos por tipo de repo)
+- [x] Configuración de Repositorios (branch protection, hooks, CI/CD)
 
 ### Backend
 - [ ] Convenciones de C# y .NET Core
@@ -119,3 +126,6 @@ Estados posibles:
 | 2026-03-29 | [Convenciones de nomenclatura — SQL Server](./database/sqlserver-naming-conventions.md) |
 | 2026-03-30 | [Templates DDL — SQL Server](./database/sqlserver-ddl-templates.md) |
 | 2026-03-30 | [Configuración de base de datos — SQL Server](./database/sqlserver-database-setup.md) |
+| 2026-03-30 | [Convenciones de Git](./git/git-conventions.md) |
+| 2026-03-30 | [Templates y Ejemplos — Git](./git/git-templates.md) |
+| 2026-03-30 | [Configuración de Repositorios — Git](./git/git-setup.md) |
