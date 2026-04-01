@@ -10,6 +10,7 @@
 |---------|-------------|--------|
 | [Database](./database/README.md) | SQL Server, modelado relacional, NoSQL, convenciones | `Stable` |
 | [Git](./git/README.md) | Conventional commits, GitFlow, nomenclatura de ramas, configuración de repos | `Stable` |
+| [REST](./rest/README.md) | Diseño de APIs REST, OpenAPI-first, convenciones HTTP, ejemplos y configuración | `Stable` |
 | Backend | C#, .NET Core, diseño de APIs, manejo de errores | `Próximamente` |
 | Frontend | Angular, estructura de proyectos, gestión de estado | `Próximamente` |
 | DevOps | CI/CD, Docker, pipelines, infraestructura | `Próximamente` |
@@ -23,6 +24,7 @@
 |---------|--------|-----------|
 | Database | `Stable` | Naming conventions, DDL templates, database setup |
 | Git | `Stable` | Conventional commits, GitFlow por tipo de repo, branch naming, setup de repos |
+| REST | `Stable` | Convenciones REST, OpenAPI-first, verbos HTTP, response pattern, ejemplos, setup |
 | Backend | `Draft` | Pendiente definición inicial |
 | Frontend | `Draft` | Pendiente definición inicial |
 | DevOps | `Draft` | Pendiente definición inicial |
@@ -41,6 +43,11 @@
 - [x] Convenciones de Git (Conventional Commits, GitFlow, nomenclatura de ramas)
 - [x] Templates y Ejemplos (commits, PRs, flujos por tipo de repo)
 - [x] Configuración de Repositorios (branch protection, hooks, CI/CD)
+
+### REST
+- [x] Convenciones REST (principios RESTful, verbos HTTP, URLs, headers, response pattern, OpenAPI-first)
+- [x] Ejemplos y Templates (requests HTTP, responses, snippets OpenAPI)
+- [x] Configuración e Infraestructura (OpenAPI tooling, CORS, rate limiting, SSL/TLS, contract testing)
 
 ### Backend
 - [ ] Convenciones de C# y .NET Core
@@ -129,3 +136,6 @@ Estados posibles:
 | 2026-03-30 | [Convenciones de Git](./git/git-conventions.md) |
 | 2026-03-30 | [Templates y Ejemplos — Git](./git/git-templates.md) |
 | 2026-03-30 | [Configuración de Repositorios — Git](./git/git-setup.md) |
+| 2026-03-31 | [Convenciones REST](./rest/rest-conventions.md) |
+| 2026-03-31 | [Ejemplos y Templates — REST](./rest/rest-examples.md) |
+| 2026-03-31 | [Configuración e Infraestructura — REST](./rest/rest-setup.md) |
