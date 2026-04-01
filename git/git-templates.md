@@ -96,7 +96,7 @@ case "$COMMIT_MSG" in
   Merge*|Revert*) exit 0 ;;
 esac
 
-TYPES="feat|fix|hotfix|refactor|test|docs|chore|style|perf|ci|build|migration|revert"
+TYPES="feat|fix|refactor|test|docs|chore|style|perf|ci|build|migration|revert"
 PATTERN="^($TYPES)(\([a-z0-9_-]+\))?(!)?: .{1,72}"
 
 if ! echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
@@ -106,8 +106,10 @@ if ! echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
   echo "  Formato: <tipo>(<scope>): <descripción>"
   echo "  Ejemplo: feat(auth): agregar login con Google"
   echo ""
-  echo "  Tipos válidos: feat, fix, hotfix, refactor, test, docs,"
+  echo "  Tipos válidos: feat, fix, refactor, test, docs,"
   echo "                 chore, style, perf, ci, build, migration, revert"
+  echo ""
+  echo "  Nota: los hotfixes usan tipo 'fix' — la urgencia la comunica la rama hotfix/*"
   echo ""
   exit 1
 fi
@@ -184,8 +186,7 @@ Ticket: [{PROYECTO}-000](https://tu-tracker.com/{PROYECTO}-000)
 ## Tipo de cambio
 
 - [ ] `feat` — nueva funcionalidad
-- [ ] `fix` — corrección de bug
-- [ ] `hotfix` — fix urgente a producción
+- [ ] `fix` — corrección de bug (incluye hotfixes — la rama `hotfix/*` comunica la urgencia)
 - [ ] `refactor` — cambio interno sin impacto funcional
 - [ ] `migration` — cambio de esquema de base de datos
 - [ ] `docs` — documentación
@@ -217,20 +218,53 @@ Ticket: [{PROYECTO}-000](https://tu-tracker.com/{PROYECTO}-000)
 
 > Contexto: [git-setup.md 7](git-setup.md#7-configuración-por-tipo-de-repositorio)
 >
-> Ubicar en `.github/CODEOWNERS`
+> Ubicar en `.github/CODEOWNERS`. Reemplazar `@{equipo-*}` con los handles reales del equipo (usuarios o grupos de GitHub/GitLab/Azure DevOps).
+>
+> **Cuándo es obligatorio:** repos de Base de Datos y Librería. Ver [git-setup.md 7](git-setup.md#7-configuración-por-tipo-de-repositorio).
+
+### Backend / Frontend
 
 ```
-# Dueños globales del repositorio
-*                   @{equipo-desarrollo}
+# Todos los archivos — revisión del equipo de desarrollo
+*                        @{equipo-desarrollo}
 
-# Migraciones — revisión obligatoria de DBA/Infra
-migrations/         @{equipo-dba} @{equipo-infra}
+# Pipelines CI/CD — revisión obligatoria de Infra
+.github/workflows/       @{equipo-infra}
+
+# Contratos OpenAPI — revisión del equipo de arquitectura o tech lead
+docs/api/                @{tech-lead}
+openapi.yaml             @{tech-lead}
+```
+
+### Base de Datos
+
+```
+# Todos los archivos — revisión del equipo de desarrollo
+*                        @{equipo-desarrollo}
+
+# Scripts de migración — revisión obligatoria de DBA/Infra
+migrations/              @{equipo-dba} @{equipo-infra}
 
 # Pipelines CI/CD — revisión de Infra
-.github/workflows/  @{equipo-infra}
+.github/workflows/       @{equipo-infra}
+```
 
-# Configuración de infraestructura
-infra/              @{equipo-infra}
+### Librería / Paquete
+
+```
+# Todos los archivos — revisión del equipo de desarrollo
+*                        @{equipo-desarrollo}
+
+# Archivo de versión — revisión del tech lead (bump de versión)
+package.json             @{tech-lead}
+*.csproj                 @{tech-lead}
+pyproject.toml           @{tech-lead}
+
+# API pública de la librería — revisión del tech lead
+src/public/              @{tech-lead}
+
+# Pipelines CI/CD — revisión de Infra
+.github/workflows/       @{equipo-infra}
 ```
 
 ---
@@ -279,7 +313,7 @@ git checkout -b hotfix/{PROYECTO}-{numero}-{descripcion}
 
 # 2. Corregir y commitear
 git add {archivos}
-git commit -m "hotfix({scope}): {descripcion}"
+git commit -m "fix({scope}): {descripcion}"
 
 # 3. Abrir PR hacia main → merge
 

@@ -14,6 +14,7 @@
    - [1.1 Idioma](#11-idioma)
    - [1.2 Separador en URLs](#12-separador-en-urls)
    - [1.3 Nomenclatura de campos JSON](#13-nomenclatura-de-campos-json)
+   - [1.4 Fechas y timestamps](#14-fechas-y-timestamps)
 2. [Principios RESTful](#2-principios-restful)
 3. [Tipos de Contenido y Negociación](#3-tipos-de-contenido-y-negociación)
 4. [Verbos HTTP](#4-verbos-http)
@@ -105,6 +106,17 @@ La nomenclatura de los campos en el cuerpo del request y response es independien
 **Regla:** el equipo elige **un solo estilo** y lo aplica a todos los campos JSON del proyecto. Los ejemplos en esta guía usan `snake_case`.
 
 > **Nota:** la decisión de URL (sección 1.2) y la de campos JSON (1.3) son independientes. Un proyecto puede usar `snake_case` en URLs y `camelCase` en JSON, o usar el mismo estilo para ambos. Lo que no se permite es inconsistencia dentro de cada categoría.
+
+### 1.4 Fechas y timestamps
+
+| Regla | Valor |
+|-------|-------|
+| Zona horaria | **UTC siempre** — todos los timestamps se almacenan y exponen en UTC |
+| Formato | ISO 8601 con sufijo `Z` — `2026-03-31T10:30:00Z` |
+| Conversión a zona local | Responsabilidad del cliente — la API nunca expone timestamps localizados |
+| Fechas sin hora | `YYYY-MM-DD` — `2026-03-31` |
+
+> **UTC como fuente de verdad:** todos los timestamps en requests y responses son UTC. El servidor nunca aplica conversión de zona horaria. La conversión a la zona local del usuario final es responsabilidad exclusiva del cliente. Esto garantiza consistencia en sistemas distribuidos y entornos multi-zona.
 
 ---
 
@@ -456,7 +468,15 @@ La versión se comunica a través del header `X-Api-Version` en cada request y r
 X-Api-Version: 1.2.0
 ```
 
-> **Por qué header y no URL:** versionar en la URL (`/api/v1/users`) contamina el path del recurso y dificulta la evolución. El header desacopla la versión del recurso, siguiendo el principio REST de URI estable para el recurso. Si el equipo tiene una razón fuerte para versionar en URL (ej. compatibilidad con un gateway heredado), se debe documentar la excepción.
+> **Por qué header y no URL:** versionar en la URL (`/api/v1/users`) contamina el path del recurso y dificulta la evolución. El header desacopla la versión del recurso, siguiendo el principio REST de URI estable para el recurso.
+>
+> **Cuándo el versionado en URL es válido:** existen escenarios donde el header no es viable y versionar en URL es la opción correcta:
+> - **API Gateways heredados** que enrutan tráfico por path y no admiten enrutamiento por header
+> - **APIs públicas de consumo masivo** donde la versión en URL facilita la integración directa desde browser, herramientas HTTP o documentación sin configuración de headers
+> - **Webhooks y callbacks** donde el consumer no controla los headers del request entrante
+> - **Compatibilidad con clientes legacy** que ya integraron con versión en URL y no pueden migrar sin un ciclo de deprecación prolongado
+>
+> En cualquiera de estos casos, el versionado en URL es la excepción documentada — no el estándar. El `X-Api-Version` header sigue siendo requerido para comunicar la versión exacta del contrato en el response.
 
 ---
 
@@ -588,7 +608,7 @@ Usado para operaciones que retornan un recurso o estructura de datos:
 
 ```json
 {
-  "message": "",
+  "message": "User retrieved successfully",
   "results": {
     "id": "550e8400-e29b-41d4-a716-446655440000",
     "name": "John Doe",
@@ -602,7 +622,7 @@ Usado para operaciones que retornan un recurso o estructura de datos:
 - `POST` con `201 Created` que retorna el recurso creado
 - `PUT` / `PATCH` con `200 OK` que retorna el recurso modificado
 
-> **`message`:** vacío en respuestas exitosas con datos. Se popula cuando el contexto requiere un mensaje adicional junto con el recurso.
+> **`message`:** siempre presente y con valor. Describe el resultado de la operación en lenguaje natural. Ejemplos: `"User retrieved successfully"`, `"User created successfully"`, `"User updated successfully"`. Nunca se envía vacío.
 
 ### 9.3 Respuesta paginada
 
@@ -610,7 +630,7 @@ Usado para endpoints que retornan colecciones con paginación:
 
 ```json
 {
-  "message": "",
+  "message": "Users retrieved successfully",
   "results": [ ... ],
   "total": 42,
   "page": 1,
@@ -630,6 +650,8 @@ Usado para endpoints que retornan colecciones con paginación:
 | `has_prev` | `bool` | Si existe una página anterior |
 
 > **Lista vacía:** retornar `200 OK` con `results: []` y `total: 0`. No retornar `404` para colecciones sin resultados.
+
+> **`total` y performance:** para colecciones de alto volumen (tablas de log, historial de auditoría con millones de registros), un `COUNT(*)` puede ser costoso. En esos casos, el equipo puede omitir `total` y retornar únicamente `has_next`. Esta decisión debe documentarse en el contrato OpenAPI y ser consistente dentro de la misma colección — no alternar entre incluir y omitir `total` según la página.
 
 ### 9.4 Parámetros de paginación
 
