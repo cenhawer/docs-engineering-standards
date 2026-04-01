@@ -8,7 +8,7 @@
 
 | Sección | Descripción | Estado |
 |---------|-------------|--------|
-| [Database](./database/README.md) | SQL Server, modelado relacional, NoSQL, convenciones | `Stable` |
+| [Database](./database/README.md) | SQL Server, modelado relacional, convenciones de nomenclatura, DDL templates, setup | `Stable` |
 | [Git](./git/README.md) | Conventional commits, GitFlow, nomenclatura de ramas, configuración de repos | `Stable` |
 | [REST](./rest/README.md) | Diseño de APIs REST, OpenAPI-first, convenciones HTTP, ejemplos y configuración | `Stable` |
 | Backend | C#, .NET Core, diseño de APIs, manejo de errores | `Próximamente` |

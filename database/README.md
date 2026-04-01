@@ -1,6 +1,6 @@
 # Database
 
-Lineamientos para el diseño, modelado y uso de bases de datos relacionales y no relacionales.
+Lineamientos para el diseño, modelado y uso de bases de datos relacionales con SQL Server.
 
 ---
 

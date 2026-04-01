@@ -92,7 +92,6 @@ Un historial de commits inconsistente genera deuda técnica invisible: es imposi
 |------|-----|--------------------------|
 | `feat` | Nueva funcionalidad para el usuario | `MINOR` (1.x.0) |
 | `fix` | Corrección de bug que afecta al usuario | `PATCH` (1.0.x) |
-| `hotfix` | Corrección urgente directo a producción | `PATCH` (1.0.x) |
 | `refactor` | Cambio de código sin impacto funcional | Sin cambio |
 | `test` | Agregar o corregir tests | Sin cambio |
 | `docs` | Cambios en documentación | Sin cambio |
@@ -105,8 +104,8 @@ Un historial de commits inconsistente genera deuda técnica invisible: es imposi
 | `revert` | Revierte un commit anterior | Depende del revertido |
 
 > **`feat` vs `refactor`:** `feat` agrega comportamiento observable por el usuario o sistema externo. `refactor` cambia la implementación interna sin alterar el comportamiento observable.
->
-> **`fix` vs `hotfix`:** `fix` viaja por el flujo normal (feature → develop → main). `hotfix` se crea desde `main`, va directamente a producción y luego hace backmerge a `develop`.
+
+> **Hotfixes:** un hotfix usa el tipo `fix` — la urgencia la comunica la rama (`hotfix/*`), no el tipo de commit. Mezclar ambas capas genera inconsistencias en el historial y en la generación de changelogs.
 
 ### 2.3 Scope
 

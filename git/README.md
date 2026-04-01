@@ -9,7 +9,7 @@ Lineamientos para el uso de Git: convenciones de commits, nomenclatura de ramas,
 | Guía | Descripción | Estado |
 |------|-------------|--------|
 | [Convenciones de Git](./git-conventions.md) | Conventional commits, nombres de ramas, GitFlow por tipo de repositorio | `Stable` |
-| [Templates y Ejemplos](./git-templates.md) | Plantillas de commits, PRs y referencia rápida de ramas | `Stable` |
+| [Templates y Ejemplos](./git-templates.md) | Hooks de validación, PR template, CODEOWNERS por tipo de repo, flujos Git por tipo de repositorio | `Stable` |
 | [Configuración de Repositorios](./git-setup.md) | Branch protection, hooks, permisos, CI/CD | `Stable` |
 
 ---
@@ -19,7 +19,7 @@ Lineamientos para el uso de Git: convenciones de commits, nomenclatura de ramas,
 | Documento | Versión | Audiencia | Contenido |
 |-----------|---------|-----------|-----------|
 | `git-conventions.md` | 1.0 | Dev | Commits, ramas, GitFlow por tipo de repo |
-| `git-templates.md` | 1.0 | Dev | Templates de commits, PRs, referencia rápida |
+| `git-templates.md` | 1.0 | Dev | Hooks (commit-msg, pre-push), PR template, CODEOWNERS por tipo de repo, flujos por tipo de repositorio |
 | `git-setup.md` | 1.0 | Infra / DevOps | Configuración de repos, branch protection, hooks |
 
 ---
