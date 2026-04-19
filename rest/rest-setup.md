@@ -241,7 +241,7 @@ X-RateLimit-Reset: 1743429600
 }
 ```
 
-> El cuerpo de error sigue el mismo formato `ProblemDetails` que usa el resto de la API — consistente con el manejo de excepciones del backend. Ver [rest-conventions.md §9.5](rest-conventions.md#95-manejo-de-errores--rfc-7807).
+> El cuerpo de error sigue el mismo formato `ProblemDetails` que usa el resto de la API — consistente con el manejo de excepciones del backend. Ver [rest-conventions.md 9.5](rest-conventions.md#95-manejo-de-errores--rfc-7807).
 
 ### 4.3 Límites recomendados por tipo de endpoint
 

@@ -11,6 +11,7 @@
 | [Database](./database/README.md) | SQL Server, modelado relacional, convenciones de nomenclatura, DDL templates, setup | `Stable` |
 | [Git](./git/README.md) | Conventional commits, GitFlow, nomenclatura de ramas, configuración de repos | `Stable` |
 | [REST](./rest/README.md) | Diseño de APIs REST, OpenAPI-first, convenciones HTTP, ejemplos y configuración | `Stable` |
+| [Infraestructura](./infraestructura/README.md) | Keycloak IAM — realms, clients, roles, scopes, templates y configuración DevOps | `Stable` |
 | Backend | C#, .NET Core, diseño de APIs, manejo de errores | `Próximamente` |
 | Frontend | Angular, estructura de proyectos, gestión de estado | `Próximamente` |
 | DevOps | CI/CD, Docker, pipelines, infraestructura | `Próximamente` |
@@ -25,6 +26,7 @@
 | Database | `Stable` | Naming conventions, DDL templates, database setup |
 | Git | `Stable` | Conventional commits, GitFlow por tipo de repo, branch naming, setup de repos |
 | REST | `Stable` | Convenciones REST, OpenAPI-first, verbos HTTP, response pattern, ejemplos, setup |
+| Infraestructura | `Stable` | Keycloak — realms, clients, roles, scopes, templates, setup DevOps |
 | Backend | `Draft` | Pendiente definición inicial |
 | Frontend | `Draft` | Pendiente definición inicial |
 | DevOps | `Draft` | Pendiente definición inicial |
@@ -48,6 +50,11 @@
 - [x] Convenciones REST (principios RESTful, verbos HTTP, URLs, headers, response pattern, OpenAPI-first)
 - [x] Ejemplos y Templates (requests HTTP, responses, snippets OpenAPI)
 - [x] Configuración e Infraestructura (OpenAPI tooling, CORS, rate limiting, SSL/TLS, contract testing)
+
+### Infraestructura
+- [x] Convenciones de Keycloak (realms, clients, roles, scopes, groups, protocol mappers)
+- [x] Referencia de Configuración — Keycloak (templates, audience mapper, scope mapper, checklist de validación)
+- [x] Configuración e Infraestructura — Keycloak (PostgreSQL, separación de ambientes, export/import, secrets, backups)
 
 ### Backend
 - [ ] Convenciones de C# y .NET Core
@@ -139,3 +146,6 @@ Estados posibles:
 | 2026-03-31 | [Convenciones REST](./rest/rest-conventions.md) |
 | 2026-03-31 | [Ejemplos y Templates — REST](./rest/rest-examples.md) |
 | 2026-03-31 | [Configuración e Infraestructura — REST](./rest/rest-setup.md) |
+| 2026-04-15 | [Convenciones de Keycloak](./infraestructura/keycloak/keycloak-conventions.md) |
+| 2026-04-15 | [Referencia de Configuración — Keycloak](./infraestructura/keycloak/keycloak-examples.md) |
+| 2026-04-15 | [Lineamiento DevOps — Keycloak](./infraestructura/keycloak/keycloak-setup.md) |
